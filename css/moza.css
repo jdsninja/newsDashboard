@@ -1,0 +1,94 @@
+/* Grid */
+#grid{
+    height: 523px;
+    width: 100%;
+    float:left;
+    z-index:1;
+    position:relative;
+}
+#grid .tile{
+	position:absolute;
+    overflow:hidden;
+    display:none;
+}
+
+#grid .tile a{
+    color: #FFFFFF;
+    display: block;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    background:#EEEEEE;
+}
+#grid .tile a:hover img{opacity:0.85;}
+#grid img{
+	position:relative;
+    opacity:0;
+}
+#grid .infos{
+    background-color: rgba(0, 0, 0, 0.8);
+    tooltirder: 0 none;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+}
+#grid .tile span{display:block;}
+#grid .tile .wrapper{
+	padding:7px;
+    margin-top:0;
+    overflow: visible;
+}
+#toolTips .category,
+#grid .category{
+    color: #aaaaaa;
+    display: block;
+    line-height: 11px;
+    padding-bottom: 0;
+    text-transform: uppercase;
+	font-size:9px;
+}
+#grid .big{
+    font-size:14px;
+    line-height:15px;
+}
+#grid .medium{
+    font-size:11px;
+    line-height:14px;
+}
+#grid .small{
+    font-size:12px;
+    line-height:15px;
+}
+#grid .small .infos{
+	display:none;
+}
+/* Tool tips */
+
+/* Components - util - tools */
+#toolTips{
+	background-color:#000;
+	position:absolute;
+    font-size: 11px;
+    line-height: 15px;
+	color:#fff;
+	padding:7px;
+	display:none;
+	z-index: 3;
+    visibility:hidden;
+    opacity:0;
+    max-width:155px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.75);
+}
+
+#toolTips .arrow{
+	background:url(../images/sprite.png) -36px 0 no-repeat transparent;
+	width:11px;
+	height:6px;
+	position:absolute;
+	top:-6px;
+	left:50%;
+    margin-left:-5.5px;
+	display:block;
+}

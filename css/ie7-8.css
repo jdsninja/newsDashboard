@@ -1,0 +1,10 @@
+#grid .infos{
+    background-color:#000;
+    filter: alpha(opacity=80);
+}
+.archive #dCcontent h1 {
+	padding-bottom:20px
+}
+#dashboard.new-associates #dItemsCtn{width:537px;}
+#dashboard.archive #dItemsCtn{width:676px;}
+#dashboard.new-associates #dItems .item{padding-bottom:5px;}

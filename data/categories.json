@@ -1,0 +1,18 @@
+[
+	{
+		"title": "Category 1",
+		"longTitle": "Category 1 Lorem ipsum",
+		"slug": "products",
+		"id": 1,
+		"preview": "Category 1 habitasse platea dictumst",
+		"content": "Category 1 a continuous stream of unique, high-value products for our customers. Sustain our leadership position in expandable fluoropolymers. Adopt common tools and processes to drive innovation. Encourage, incubate and protect promising new ideas."
+	},
+	{
+		"title": "Category 2",
+		"longTitle": "Category 2 Lorem ipsum",
+		"slug": "associates",
+		"id": 2,
+		"preview": "Category 2 Lorem Ipsum dolor sit",
+		"content": "Category 2 Lorem ipsum dolor sit amet, conseus est, eget facilisis mi pellentesque nec. Vivamus malesuada luctus leo.Aenean semper, nibh gravida eleifend lacinia, nisi dolor consequat nisl, nec feugiat neque leo et mauris. Donec iaculis diam sed arcu fermentum pellentesque. Fu"
+	}
+]

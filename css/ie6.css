@@ -1,0 +1,13 @@
+#dMainHeader h1.active,
+#dMainHeader li.active,
+#toolTips .arrow{
+	background:none
+}
+#dItemsCtn a.item{
+	cursor:pointer
+}
+#dashboard.new-associates .item {
+    padding-bottom: 5px;
+}
+#dashboard.new-associates #dItemsCtn{width:537px;}
+#dashboard.archive #dItemsCtn{width:676px;}

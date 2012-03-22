@@ -1,0 +1,234 @@
+<!doctype html>
+<html>
+	<head>
+		<title>News Dashboard</title>
+
+		<!-- jQuery template -->
+		<script id="tileTpl" type="text/x-jquery-tmpl">
+			<div class="tile ${size}" style="width:${width}%;height:${height}%;top:${y}%;left:${x}%;" data-id="${id}">
+				<a href="#${itemUrl}">
+					<img src="${imgSrc}" border="0" style="top:-${imageTop}%;left:-${imageLeft}%;${imgWidth}${imgHeight}">
+					<span class="infos">
+						<span class="wrapper">
+							<span class="category">${categoryName}</span>
+							<span class="title">${title}</span>
+						</span>
+					</span>
+					<span class="selected" style="width:96%;height:93%;position:absolute;top:0;left:0;border:2px solid black;display:none;border-bottom:3px solid black"></span>
+				</a>
+			</div>
+		</script>
+		<script id="categoryLinkTpl" type="text/x-jquery-tmpl">
+			<li data-id="${id}">
+				<a href="#${slug}" data-preview="${preview}">${title}</a>
+			</li>
+		</script>
+		<script id="moreStoriesLinkTpl" type="text/x-jquery-tmpl">
+			<a class="allStoriesBtn" href="#all-stories/${categorySlug}">More ${categoryName} Stories</a>
+		</script>
+		<script id="categoryTpl" type="text/x-jquery-tmpl">
+			<div class="closeBtnCtn"><a href="#home" class="closeBtn s"><span>Close</span></a></div>
+			<h1 class="">${longTitle}</h1>
+			<div class="text">${content}</div>
+			<a href="#all-stories/${slug}" class="allStoriesBtn">More Stories</a>
+		</script>
+		<script id="columnTpl" type="text/x-jquery-tmpl">
+			<div class="column" data-id="${id}" style="width:${width};height:${height}"></div>
+		</script>
+		<script id="paginationTpl" type="text/x-jquery-tmpl">
+			<li>
+				<a href="#${pageSlug}/page/${pageNumber}" data-id="${pageNumber}"${active}>${pageNumber}</a>
+			</li>
+		</script>
+		<script id="articleTpl" type="text/x-jquery-tmpl">
+			<div class="closeBtnCtn"><a href="#${categorySlug}" class="closeBtn s"><span>Close</span></a></div>
+			<div class="time">${dateFormated}</div>
+			<h1>${title}</h1>
+			<div id="dItemsCtn"><div id="dItems" class="model${model}"></div></div>
+			<ul class="pagination"></ul>
+			<a href="${printLnk}" id="printBtn" class="s" target="_blank"><span>Print</span></a>
+		</script>
+		<script id="archiveTpl" type="text/x-jquery-tmpl">
+			<div class="closeBtnCtn"><a href="#home" class="closeBtn s"><span>Close</span></a></div>
+			<header>
+				<h1 class="">${title}</h1>
+				<form>
+					<select onchange="if (this[this.selectedIndex].value != '0') {location.href=this[this.selectedIndex].value;}">
+						<option value="0" selected="0">Select something</option>
+						<option value="#all-stories">All Stories</option>
+					</select>
+				</form>
+			</header>
+			<div id="dItemsCtn"><div id="dItems"></div></div>
+			<ul class="pagination"></ul>
+		</script>
+		<script id="archiveCategoryTpl" type="text/x-jquery-tmpl">
+			<option value="#all-stories/${slug}" ${selected} data-id="${id}">${title}</option>
+		</script>
+		<script id="archiveArticleTpl" type="text/x-jquery-tmpl">
+			<a href="#${categorySlug}/${id}" class="item">
+				<img src="${imgSrc}" width="60" height="45">
+				<span class="infos">
+					<span class="categoryAndDate">
+						<span class="category">${categoryName}</span>,
+						${dateFormated}
+					</span>
+					<span class="title">${title}</span>
+				</span>
+				<!--[if IE 7]>
+				<span style="display:block;float:none;clear:both;height:1px"></span>
+				<![endif]-->
+				<!--[if IE 8]>
+				<span style="display:block;float:none;clear:both;height:1px"></span>
+				<![endif]-->
+			</a>
+		</script>
+		<script id="associateTpl" type="text/x-jquery-tmpl">
+			<div class="item">
+				<img src="${imgSrc}" width="60" height="80">
+				<div class="infos">
+					<div class="title">${title}</div>
+					<div class="categoryAndDate">
+						${dateFormated}
+					</div>
+					<div class="content">${content}</div>
+				</div>
+				<!--[if IE 7]>
+				<span style="display:block;float:none;clear:both;height:1px"></span>
+				<![endif]-->
+				<!--[if IE 8]>
+				<span style="display:block;float:none;clear:both;height:1px"></span>
+				<![endif]-->
+			</div>
+		</script>
+		<script id="contributeTpl" type="text/x-jquery-tmpl">
+			<div class="closeBtnCtn"><a href="#home" class="closeBtn s"><span>Close</span></a></div>
+			<form action="http://google.com">
+				<h1>Do you have something to share on the Dashboard?</h1>
+				<p>We welcome your ideas for Dashboard items! Tell us about news and events that showcase our products, unique culture, reputation, associates, Enterprise effectiveness or profitable growth.</p>
+				<div class="blocka">
+					<fieldset>
+						<label for="name">Name:</label>
+						<input id="name" name="name" type="text" tabindex="1">
+					</fieldset>
+					<fieldset>
+						<label for="email">Email address:</label>
+						<input id="email" name="email" type="text" tabindex="2">
+					</fieldset>
+					<fieldset>
+						<label for="phone">Telephone/Ext:</label>
+						<input id="phone" name="phone" type="text" tabindex="3">
+					</fieldset>
+					<fieldset>
+						<label for="plant">Plant: </label>
+						<select id="plant" name="plant" tabindex="4">
+							<option value="lorem">Lorem</option>
+							<option value="ipsum">Ipsum</option>
+						</select>
+					</fieldset>
+					<fieldset>
+						<label for="division">Division: </label>
+						<select id="division" name="division" tabindex="5">
+							<option value="lorem">Lorem</option>
+							<option value="ipsum">Ipsum</option>
+						</select>
+					</fieldset>
+				</div>
+				<div class="blockb">
+					<fieldset>
+						<label for="what">What’s your idea?</label>
+						<textarea id="what" name="what" tabindex="6"></textarea>
+					</fieldset>
+					<fieldset>
+						<label for="when">When is it happening (or has it happened)? </label>
+						<input id="when" name="when" type="text" tabindex="7">
+					</fieldset>
+					<fieldset>
+						<label>Do you have images or video to share?</label>
+						<label class="labelInput" for="yes"><input type="radio" id="yes" name="yesNo" value="1" tabindex="8"> Yes</label>
+						<label class="labelInput" for="no"><input type="radio" id="no" name="yesNo" value="0" tabindex="9"> No</label>
+					</fieldset>
+				 </div>
+				<div class="separation"></div>
+				 <button type="submit" class="s"><span>Submit</span></button>
+			</form>
+		</script>
+
+		<script language="JavaScript" type="text/javascript"
+			src="http://admin.brightcove.com/js/BrightcoveExperiences.js"></script>
+
+		<script id="articleVideoTpl" type="text/x-jquery-tmpl">
+			<object id="myExperience1229814450001" class="BrightcoveExperience" style="padding:0;margin:0">
+			<param name="bgcolor" value="#FFFFFF" />
+			<param name="width" value="486" />
+			<param name="height" value="537" />
+			<param name="playerID" value="1070958638001" />
+			<param name="playerKey"
+			value="AQ~,AAAAyT9nMZE,F6Uxsdf-6KyN_ELCPxiK1Y1KkP3iiv-N" />
+			<param name="isVid" value="true" />
+			<param name="isUI" value="true" />
+			<param name="dynamicStreaming" value="true" />
+			<param name="@videoPlayer" value="${videoid}" /> </object>
+		</script>
+
+		<link rel="stylesheet" href="css/moza.css" type="text/css" charset="utf-8" />
+		<link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+		<!--[if lt IE 9]>
+		<link rel="stylesheet" href="css/ie7-8.css" type="text/css" charset="utf-8" />
+		<![endif]-->
+		<!--[if lt IE 7]>
+		<link rel="stylesheet" href="css/ie6.css" type="text/css" charset="utf-8" />
+		<![endif]-->
+		<!-- end jQuery template -->
+	</head>
+	<body>
+
+		<div id="big_news" class="home_module" >
+			<div id="widget-holder" style="width:701px; height:575px;">
+				<div id="dashboard" class="home">
+					<header id="dMainHeader" class="">
+						<h1><a href="#home">Dashboard</a></h1>
+						<nav>
+							<ul>
+								<li class="allStories">
+									<a href="#all-stories" data-preview="[Lorem Ipsum]">All Stories</a>
+								</li>
+							</ul>
+						</nav>
+					</header>
+					<div id="contentCtn" class="content">
+						<div class="wrapper">
+							<section id="grid"></section>
+							<div id="dCcontent"><div class="padding"></div></div>
+						</div>
+					</div>
+					<div id="toolTips">
+						<span class="arrow"></span>
+						<div class="category"></div>
+						<div class="title"></div>
+					</div>
+					<div id="data">
+						<div id="related"></div><!-- todo: create this in js. -->
+						<div id="article"></div><!-- todo: create this in js. -->
+						<div id="dImg"></div><!-- todo: create this in js. -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="module_bottom"></div>
+
+
+		<script src="js/libs/innershiv.js"></script>
+		<script src="js/libs/jquery-1.6.4.min.js"></script>
+		<script src="js/libs/jquery-ui-1.8.15.custom.min.js"></script>
+		<script src="js/plugins/jquery.tmpl.js"></script>
+		<!--<script src="js/libs/jquery.quicksand.js"></script>-->
+		<script src="js/plugins/autocolumn.js"></script>
+		<script src="js/libs/underscore-1.1.7.min.js"></script>
+		<script src="js/libs/backbone-0.5.3.min.js"></script>
+		<script src="js/plugins/moza.js"></script>
+		<script src="js/dashboard.js"></script>
+
+
+	</body>
+</html>
